@@ -13,5 +13,18 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build DevOpsDemo/ --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet build DevOpsDemo/DependencyPackage --configuration $(buildConfiguration)
+  displayName: 'dotnet build DevOpsDemo/ --configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'DevOpsDemo/DependencyPackage/*.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '180b9bd8-aeb8-46b7-849d-c6ad8889fc2e'
