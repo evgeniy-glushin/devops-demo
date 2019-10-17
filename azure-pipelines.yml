@@ -12,6 +12,14 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+
+
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'select'
+    vstsFeed: '180b9bd8-aeb8-46b7-849d-c6ad8889fc2e'
+
 - script: dotnet build DevOpsDemo/ --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
