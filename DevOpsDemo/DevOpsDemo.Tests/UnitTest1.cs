@@ -10,9 +10,15 @@ namespace DevOpsDemo.Tests
         }
 
         [Test]
-        public void Test1()
+        public void Pass()
         {
             Assert.Pass();
+        }
+
+        [Test]
+        public void Fail()
+        {
+            Assert.Fail();
         }
     }
 }
