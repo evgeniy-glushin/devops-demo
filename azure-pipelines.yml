@@ -12,8 +12,6 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-
-
 steps:
 - task: DotNetCoreCLI@2
   inputs:
@@ -22,5 +20,10 @@ steps:
     feedsToUse: 'select'
     vstsFeed: '180b9bd8-aeb8-46b7-849d-c6ad8889fc2e'
 
-- script: dotnet build DevOpsDemo/ --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    workingDirectory: 'DevOpsDemo'
+    arguments: '--configuration $(buildConfiguration)'
+
+
