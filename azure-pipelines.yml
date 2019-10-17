@@ -26,4 +26,8 @@ steps:
     workingDirectory: 'DevOpsDemo'
     arguments: '--configuration $(buildConfiguration)'
 
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'DevOpsDemo/DevOpsDemo.Tests/DevOpsDemo.Tests.csproj'
+    testRunTitle: 'Running DevOpsDemo.Tests'
