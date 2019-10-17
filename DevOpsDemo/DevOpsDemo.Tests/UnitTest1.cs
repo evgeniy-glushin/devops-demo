@@ -18,7 +18,7 @@ namespace DevOpsDemo.Tests
         [Test]
         public void Fail()
         {
-            Assert.Pass();
+            Assert.Pass("The code is fucked up");
         }
     }
 }
