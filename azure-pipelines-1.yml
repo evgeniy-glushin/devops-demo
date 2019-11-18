@@ -10,13 +10,13 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-schedules:
-- cron: "*/5 * * * *"
-  displayName: every one minute trigger
-  branches:
-    include:
-    - master
-  always: true
+# schedules:
+# - cron: "*/5 * * * *"
+#   displayName: every one minute trigger
+#   branches:
+#     include:
+#     - master
+#   always: true
 
 steps:
 - task: PowerShell@2
