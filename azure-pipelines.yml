@@ -13,21 +13,28 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
+- task: AzurePowerShell@4
   inputs:
-    command: 'restore'
-    projects: 'DevOpsDemo/DevOpsDemo/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: '180b9bd8-aeb8-46b7-849d-c6ad8889fc2e'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    workingDirectory: 'DevOpsDemo'
-    arguments: '--configuration $(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: 'DevOpsDemo/DevOpsDemo.Tests/DevOpsDemo.Tests.csproj'
-    testRunTitle: 'Running DevOpsDemo.Tests'
+    ScriptType: 'InlineScript'
+    Inline: |
+      $url = 'https://objectivec2swift.com/#/converter/'
+      $req = [system.Net.WebRequest]::Create($url)
+      try {
+          
+          $res = Invoke-WebRequest -Uri $url
+          if($res.StatusCode -eq 200)
+          {
+              Write-Host "$url is alive"
+          }
+          else
+          {
+              Write-Host "Wrong Status Code: " $res.StatusCode
+              Write-Host $res
+              exit 1;
+          }
+      } 
+      catch [System.Exception] {
+          $res = $_.Exception
+          Write-Host $res;
+          exit 1;
+      }
