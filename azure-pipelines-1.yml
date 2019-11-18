@@ -16,8 +16,9 @@ steps:
     targetType: 'inline'
     script: |
       $url = 'https://objectivec2swift.com/#/converter/'
+      $req = [system.Net.WebRequest]::Create($url)
       try {
-          Write-Host "Running Health Check..."
+          
           $res = Invoke-WebRequest -Uri $url
           if($res.StatusCode -eq 200)
           {
@@ -31,10 +32,8 @@ steps:
           }
       } 
       catch [System.Exception] {
-          Write-Host "Exception block"
           $res = $_.Exception
           Write-Host $res;
           exit 1;
       }
-
   
