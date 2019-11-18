@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $url = 'https://objectivec2swift.com/#/converterxxx/'
+      $url = 'https://objectivec2swift2.com/#/converter/'
       try {
           
           $res = Invoke-WebRequest -Uri $url
