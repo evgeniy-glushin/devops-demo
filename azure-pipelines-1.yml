@@ -11,7 +11,7 @@ pool:
   vmImage: 'windows-latest'
 
 schedules:
-- cron: "*/1 * * * *"
+- cron: "2 * * * *"
   displayName: every one minute trigger
   branches:
     include:
